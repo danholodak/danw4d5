@@ -44,13 +44,42 @@ end
 # list = [5, 3, -7]
 # p largest_contiguous_subsum_phase_one(list) # => 8
 
-def largest_contiguous_subsum_phase_two(list)
-    largest_sum = list[0]
+def largest_contiguous_subsum_phase_two(list) # time = O(n) space = O(1)
+    max = list[0]
+    j = 1
+    i = 0
+    current = max 
+    beginning = current 
 
+    while j < list.length
+        current = current + list[j]
+        if current - beginning > current
+            current = current - beginning
+            beginning = 0
+        end
+        if current > max 
+            max = current 
+        end
+        j += 1
+        i += 1
+        beginning += list[i]
+    end
+
+    max
+    
 end
 
-list = [2, 3, -6, 7, -6, 7]
-p largest_contiguous_subsum_phase_two(list) # => 8 (from [7, -6, 7])
+# list = [2, 3, -6, 7, -6, 7]
+# p largest_contiguous_subsum_phase_two(list) # => 8 (from [7, -6, 7])
 
-list2 = [-5, -1, -3]
-largest_contiguous_subsum_phase_two(list2) # => -1 (from [-1])
+# list2 = [-5, -1, -3]
+# p largest_contiguous_subsum_phase_two(list2) # => -1 (from [-1])
+
+# list3 = [1, 2, -2, 4]
+# p largest_contiguous_subsum_phase_two(list3)
+
+# list4 = [1, 2, -4, 4]
+# p largest_contiguous_subsum_phase_two(list4)
+
+list5 = [1, 2, -2, 4, -10, -23, 20, -3, -2, 5, -10, 3]
+p largest_contiguous_subsum_phase_two(list5)
